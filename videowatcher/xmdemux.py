@@ -98,9 +98,14 @@ def _next_header(data: bytes, start: int) -> int:
 
 
 def find_ffmpeg() -> str | None:
+    from .store import APP_DIR
+
     configured = os.environ.get("VIDEOWATCHER_FFMPEG")
     if configured and Path(configured).is_file():
         return configured
+    for bundled in (APP_DIR / "ffmpeg.exe", APP_DIR / "ffmpeg" / "ffmpeg.exe"):
+        if bundled.is_file():
+            return str(bundled)
     return shutil.which("ffmpeg")
 
 
@@ -118,7 +123,8 @@ def convert_to_mp4(src: Path, dst: Path, ffmpeg: str) -> VideoInfo:
         ]
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
         if result.returncode != 0:
-            raise RuntimeError(f"ffmpeg failed: {result.stderr.strip()[:500]}")
+            dst.unlink(missing_ok=True)
+            raise RuntimeError(f"ffmpeg failed: {result.stderr.strip()[-300:]}")
         return info
     finally:
         raw.unlink(missing_ok=True)

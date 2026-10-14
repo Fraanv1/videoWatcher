@@ -1,5 +1,22 @@
 # videoWatcher: guía en español
 
+## Versión portable (para una PC sin nada instalado)
+
+Copiá el archivo **`dist\videoWatcher_portable.zip`** (30 MB) a la otra PC con un pendrive y
+descomprimilo, por ejemplo en el Escritorio. Dentro de la carpeta `videoWatcher`:
+
+- **Doble clic en `videoWatcher.exe`** abre un menú:
+  1. *Abrir videoWatcher*: abre el navegador para buscar y descargar por red local. La primera vez te pide crear un usuario.
+  2. *Convertir videos de la tarjeta microSD a MP4*: arrastrá la carpeta de la tarjeta a la ventana.
+     Los MP4 y `hashes_sha256.csv` quedan en el Escritorio.
+- **Atajo:** arrastrá la carpeta de la tarjeta encima de `videoWatcher.exe`.
+- No hace falta Python, ffmpeg ni conexión a Internet: todo viene incluido.
+- Si aparece "Windows protegió su PC", tocá *Más información* y después *Ejecutar de todas formas*
+  (el programa no tiene firma digital).
+
+Funciona en Windows 10/11 de 64 bits. Para volver a armar el paquete en esta PC:
+`powershell -ExecutionPolicy Bypass -File build_portable.ps1`
+
 ## ⚠️ Si pasó algo grave: cómo conservar los videos
 
 **Las cámaras sobrescriben las grabaciones viejas** cuando la tarjeta microSD se llena

@@ -5,13 +5,16 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 import threading
 import uuid
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-DATA_DIR = Path(os.environ.get("VIDEOWATCHER_DATA", Path(__file__).resolve().parent.parent / "data"))
-DOWNLOAD_DIR = Path(os.environ.get("VIDEOWATCHER_DOWNLOADS", DATA_DIR.parent / "downloads"))
+# Portable build (PyInstaller): keep data next to videoWatcher.exe, not in the temp bundle.
+APP_DIR = Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent.parent
+DATA_DIR = Path(os.environ.get("VIDEOWATCHER_DATA", APP_DIR / "data"))
+DOWNLOAD_DIR = Path(os.environ.get("VIDEOWATCHER_DOWNLOADS", APP_DIR / "downloads"))
 
 
 def _atomic_write(path: Path, payload: object) -> None:
