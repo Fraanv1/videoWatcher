@@ -1,0 +1,3 @@
+﻿ffmpeg.exe es FFmpeg (https://ffmpeg.org), software libre bajo licencia GPL.
+Esta copia proviene de la instalaciÃ³n de VMS Pro y se usa sin modificar.
+El cÃ³digo fuente de FFmpeg estÃ¡ disponible en https://ffmpeg.org/download.html

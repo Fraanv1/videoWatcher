@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>videoWatcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="login-view" class="center" hidden>
+    <form id="login-form" class="card narrow">
+      <h1>videoWatcher</h1>
+      <label>Username <input name="username" autocomplete="username" required></label>
+      <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Sign in</button>
+      <p class="error" id="login-error"></p>
+    </form>
+  </section>
+
+  <section id="app-view" hidden>
+    <header>
+      <strong>videoWatcher</strong>
+      <span class="spacer"></span>
+      <span id="whoami" class="muted"></span>
+      <button id="logout" class="ghost">Sign out</button>
+    </header>
+
+    <main>
+      <aside class="card">
+        <div class="row between">
+          <h2>Cameras</h2>
+          <button id="add-camera" class="ghost">+ Add</button>
+        </div>
+        <ul id="camera-list" class="list"></ul>
+
+        <form id="camera-form" hidden>
+          <h3 id="camera-form-title">Add camera</h3>
+          <label>Name <input name="name" required maxlength="80"></label>
+          <label>Connection
+            <select name="transport">
+              <option value="lan">LAN / IP address</option>
+              <option value="p2p">Cloud P2P (not available yet)</option>
+            </select>
+          </label>
+          <div class="row">
+            <label class="grow">IP address <input name="host" placeholder="192.168.1.50"></label>
+            <label class="port">Port <input name="port" type="number" value="34567" min="1" max="65535"></label>
+          </div>
+          <label>Serial number (P2P) <input name="serial" placeholder="optional"></label>
+          <label>Camera user <input name="username" value="admin" autocomplete="off"></label>
+          <label>Camera password <input name="password" type="password" autocomplete="new-password" placeholder="leave blank to keep"></label>
+          <label>Channels <input name="channels" type="number" value="1" min="1" max="64"></label>
+          <div class="row">
+            <button type="submit">Save</button>
+            <button type="button" id="camera-cancel" class="ghost">Cancel</button>
+            <span class="spacer"></span>
+            <button type="button" id="camera-delete" class="danger" hidden>Delete</button>
+          </div>
+          <p class="error" id="camera-error"></p>
+        </form>
+      </aside>
+
+      <section class="content">
+        <form id="search-form" class="card">
+          <h2 id="search-title">Recordings</h2>
+          <div class="row wrap">
+            <label>Date <input type="date" name="date" required></label>
+            <label>From <input type="time" name="from" value="00:00" step="60"></label>
+            <label>To <input type="time" name="to" value="23:59" step="60"></label>
+            <label>Channel <select name="channel"></select></label>
+            <button type="submit">Search</button>
+            <button type="button" id="test-camera" class="ghost">Test connection</button>
+          </div>
+          <p class="status" id="search-status"></p>
+        </form>
+
+        <div class="card">
+          <div class="row between">
+            <h2>Results</h2>
+            <div class="row">
+              <label class="inline"><input type="checkbox" id="want-mp4" checked> Convert to MP4</label>
+              <button id="download-selected" disabled>Download selected</button>
+            </div>
+          </div>
+          <table>
+            <thead><tr><th><input type="checkbox" id="select-all"></th><th>Start</th><th>End</th><th>Size</th><th>File</th></tr></thead>
+            <tbody id="results"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Downloads</h2>
+          <ul id="downloads" class="list downloads"></ul>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

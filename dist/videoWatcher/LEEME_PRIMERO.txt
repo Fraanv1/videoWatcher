@@ -1,0 +1,16 @@
+﻿videoWatcher (versiÃ³n portable, no hace falta instalar nada)
+============================================================
+
+1. CopiÃ¡ esta carpeta completa a la PC (por ejemplo al Escritorio).
+   No la pongas en "Archivos de programa".
+2. Doble clic en videoWatcher.exe y elegÃ­ una opciÃ³n:
+     1) Abrir videoWatcher: buscar y descargar videos de la cÃ¡mara por red local.
+        Se abre el navegador solo. La primera vez te pide crear un usuario.
+     2) Convertir videos de la tarjeta microSD a MP4.
+        Los MP4 quedan en el Escritorio, junto con hashes_sha256.csv.
+   Atajo: arrastrÃ¡ la carpeta de la tarjeta SD encima de videoWatcher.exe.
+3. Si Windows muestra "Windows protegiÃ³ su PC": tocÃ¡ "MÃ¡s informaciÃ³n" y
+   despuÃ©s "Ejecutar de todas formas". Pasa porque el programa no estÃ¡ firmado.
+
+Tus datos quedan en las carpetas "data" y "downloads", dentro de esta carpeta.
+La guÃ­a completa estÃ¡ en LEEME.md (se abre con el Bloc de notas).
